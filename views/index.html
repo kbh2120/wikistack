@@ -9,7 +9,14 @@
 {% endblock %}
 
 {% block content %}
-<!--     <p>Welcome to {{title}}</p> -->
-  	<ul><li><a href="#">list item</a></li></ul>
+	{% if docs.length > 0 %}
+	  <ul>
+	    {% for doc in docs %}
+	      <li>{{doc|page_link}}</li>
+	    {% endfor %}
+	  </ul>
+	{% else %}
+	  There are no pages. Why don't you <a href='/add'>add one</a>?
+	{% endif %}
 {% endblock %}
 

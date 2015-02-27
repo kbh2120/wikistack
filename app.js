@@ -1,5 +1,7 @@
 var express = require('express');
 var swig = require('swig');
+var filters = require('./filters');
+filters(swig);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -12,7 +14,6 @@ var add_routes = require('./routes/add');
 
 var app = express();
 app.engine('html', swig.renderFile);
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'swig');

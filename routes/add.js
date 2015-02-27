@@ -1,11 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
 /* GET app page */
 router.get('/', function(req, res, next) {
   res.render('add');
@@ -13,11 +8,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/submit', function(req, res) {
   var models = require('../models/');
-  console.log(req.body);
   var title = req.body.pageName;
   var body = req.body.pageContent;
-  console.log(title);
-  console.log(body);
   var url_name = generateUrlName(title);
   var p = new models.Page({ "title": title, "body":body, "url_name":url_name });
   p.save();
