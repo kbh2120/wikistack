@@ -11,7 +11,8 @@ router.post('/submit', function(req, res) {
   var title = req.body.pageName;
   var body = req.body.pageContent;
   var url_name = generateUrlName(title);
-  var p = new models.Page({ "title": title, "body":body, "url_name":url_name });
+  var tags = generateTagsArray(req.body.tags);
+  var p = new models.Page({ "title": title, "body":body, "url_name":url_name, "tags":tags });
   p.save();
   res.redirect('/');
 });
@@ -28,6 +29,10 @@ var generateUrlName = function(name) {
   }
 };
 
+var generateTagsArray = function(tagsString) {
+  tagsString = tagsString.replace(',', '');
+  return tagsString.split(' ');
+};
 
 
 module.exports = router;

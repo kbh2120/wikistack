@@ -1,6 +1,8 @@
 // Setting custom filters on Swig
 
 module.exports = function(swig) {
+  var marked = require('marked');
+
   var page_link = function (doc) {
     var link_name;
     console.log('doc in page_link: ' + doc);
@@ -13,5 +15,13 @@ module.exports = function(swig) {
   };
   page_link.safe = true;
 
+  var markedFilter = function (body) {
+    return marked(body);
+  };
+  markedFilter.safe = true;
+
+  swig.setFilter('marked', markedFilter);
   swig.setFilter('page_link', page_link);
+
+
 };

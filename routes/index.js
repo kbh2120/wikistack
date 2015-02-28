@@ -23,7 +23,8 @@ router.get('/wiki/:url', function(req, res) {
     // console.log('thisPage: ' + thisPage.get('title'));
     res.render('show', { 
       my_title: thisPage.title, 
-      my_body: thisPage.body
+      my_body: thisPage.body,
+      tags: thisPage.tags
     });
   });
   
